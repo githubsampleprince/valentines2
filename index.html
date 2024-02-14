@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Greeting</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: url('cats.jpg'); /* URL to your cat background image */
+            background-repeat: repeat; /* Repeat the cat background */
+            font-family: 'Arial', sans-serif;
+        }
+        #mainCard {
+            width: 300px;
+            height: 200px;
+            background-color: #ffb3b3; /* Light red card */
+            border: 1px solid #e74c3c; /* Darker red border */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        #mainCard:hover {
+            background-color: #ff9999; /* Slightly darker red on hover */
+            border-color: #c0392b; /* Darker red border on hover */
+        }
+
+        #personalMessage {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            color: #f7eeee;
+            padding: 20px; /* Add padding for better readability */
+            border-radius: 10px; /* Add border-radius for a rounded appearance */
+        }
+
+        #poems {
+            display: none;
+            width: 300px; /* Adjust the width as needed */
+            padding: 20px;
+            margin-top: 20px;
+            color: #333;
+            background-color: #e0e0e0; /* Light gray background */
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #goBackBtn {
+            background-color: #3498db; /* Blue button color */
+            color: #fff;
+            padding: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #goBackBtn:hover {
+            background-color: #2980b9; /* Slightly darker blue on hover */
+        }
+
+        /* Heart animation */
+        @keyframes heart {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Heart element styling */
+        .heart {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #e74c3c; /* Heart color */
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: heart 1s infinite;
+        }
+
+        .background-design-1 {
+            background-color: #857d7d; /* Dark gray background */
+            background-image: linear-gradient(to right top, #857d7d, #bdb7b7); /* Gradient background */
+        }
+    </style>
+</head>
+<body>
+
+<audio id="backgroundMusic" loop>
+    <source src="from.mp3" type="audio/mp3">
+    Your browser does not support the audio tag.
+</audio>
+
+<div id="mainCard" onclick="displayMessage()">
+    <p style="color: #fff;">Click to open the greeting card</p>
+</div>
+
+<div id="personalMessage" class="background-design-1">
+    <p>Happy Valentine's Day!Arianne.</p>First and foremost i would to apoloized because sometimes i am silent and mahiyain . Nadala ako ng hiya at takot ksys minsan pinipili kong tumingin from distance
+     Also dahil wala akong masyadong alam na topic na mashare . But in the positive side walang akong malaking amount to or anything much to give but I want use my skills from my course to create this website letter
+    This my way to show to you how i appreciate so much and how grateful person you are . Everytime na nakikita kita sa church bigla akong nahihiya at natutunaw , Because you have an impact to everyone , Your smile can make someone's day better
+    Your Energy too , you are very positive and approachable talang sino man tao mahahawa sa postive energy mo . at isa pa na nsg impact sakin is that you are very kind and understanding during the One Worship nadala din ako ng takot kaya di ako agad nakapag tanong sayo i even ask for czed ng tulong 
+    and pumayag ka kaya its one of the reasons why i admired you kaya i am uper thankful to have sana mabasa mo to and i pray na lagi kang masaya  Happy Valentines ulit </p>
+
+    <button id="goBackBtn" onclick="goBackToMainCard()">Go Back</button>
+</div>
+
+<div id="poems">
+    <h2>Love Poems</h2>
+    <p>Roses are red, violets are blue...</p>
+    <p>In the garden of love, our feelings grew...</p>
+    <!-- Add more poem paragraphs as needed -->
+    <button id="goBackToPoems" onclick="goBackToPoems()">Go Back</button>
+</div>
+<div id="hearts-container"></div>
+
+<script>
+    function displayMessage() {
+        var mainCard = document.getElementById('mainCard');
+        var personalMessage = document.getElementById('personalMessage');
+        var poems = document.getElementById('poems');
+
+        // Hide the main card and display the personal message
+        mainCard.style.display = 'none';
+        personalMessage.style.display = 'block';
+        poems.style.display = 'none';
+
+        // Start playing background music
+        var backgroundMusic = document.getElementById('backgroundMusic');
+        backgroundMusic.play();
+    }
+
+    function goBackToMainCard() {
+        var mainCard = document.getElementById('mainCard');
+        var personalMessage = document.getElementById('personalMessage');
+        var poems = document.getElementById('poems');
+
+        // Hide the personal message and display the main card
+        mainCard.style.display = 'flex';
+        personalMessage.style.display = 'none';
+        poems.style.display = 'none';
+
+        // Pause background music
+        var backgroundMusic = document.getElementById('backgroundMusic');
+        backgroundMusic.pause();
+    }
+
+    function goBackToPoems() {
+        var mainCard = document.getElementById('mainCard');
+        var personalMessage = document.getElementById('personalMessage');
+        var poems = document.getElementById('poems');
+
+        // Hide the poems and display the main card
+        mainCard.style.display = 'none';
+        personalMessage.style.display = 'none';
+        poems.style.display = 'block';
+
+        // Pause background music
+        var backgroundMusic = document.getElementById('backgroundMusic');
+        backgroundMusic.pause();
+    }
+
+    function createHeart() {
+        var heart = document.createElement('div');
+        heart.className = 'heart';
+        return heart;
+    }
+
+    function displayHearts() {
+        var heartsContainer = document.getElementById('hearts-container');
+
+        for (var i = 0; i < 10; i++) {
+            var heart = createHeart();
+            var randomX = Math.random() * window.innerWidth;
+            var randomY = Math.random() * window.innerHeight;
+            heart.style.left = randomX + 'px';
+            heart.style.top = randomY + 'px';
+            heartsContainer.appendChild(heart);
+        }
+    }
+
+    window.onload = function () {
+        displayHearts();
+    };
+</script>
+
+</body>
+</html>
